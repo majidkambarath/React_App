@@ -72,7 +72,7 @@ function Signup() {
             icon: "success",
             confirmButtonText: "Ok"
           }).then(()=>{
-            navigate('/')
+            navigate('/login')
           })
           
         }

@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
 const cors = require("cors");
+const path = require('path');
 app.use(express.json());
 const AuthRoutes = require('./routes/userRouter/router')
+const AdminRouter = require('./routes/adminRouter/admin')
 const cookieParser = require('cookie-parser')
 
 require('./config/db')
@@ -17,11 +19,8 @@ app.use(cors({
 
 app.use(cookieParser())
 app.use('/',AuthRoutes)
-
-//file path
-var publicDir = require('path').join(__dirname,'public'); 
-// console.log(publicDir);
-app.use(express.static(publicDir)); 
+app.use('/admin',AdminRouter)
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(2000 , ()=>{
     console.log('server runing!!!!');

@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {useCookies} from "react-cookie";
+import {useSelector,useDispatch} from "react-redux"
 import "./Login.css";
 import Swal from "sweetalert2";
 import axios from "axios";
+// import { addAuth } from "../../Redux/store"; 
+import { setLocalStorageData } from '../../Redux/store';
+
 function Login() {
+  const localStorageData = useSelector(state => state.localStorage.data);
+  console.log(localStorageData);
+
+  const dispatch = useDispatch();
+  // const Auth = useSelector((state)=>{
+  //   console.log(state);
+  //   return state.Auth
+    
+  // },)
   const [errors, setErrors] = useState({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [cookies] = useCookies([])
+  const [cookies] = useCookies([]) 
   const navigate = useNavigate();
   useEffect(()=>{
 	const verifyUser = async ()=>{
@@ -56,7 +69,10 @@ function Login() {
             }
           )
           .then((res) => {
+            console.log(res.data.userLogin);
+            dispatch(setLocalStorageData (res.data.userLogin))
             if (res.data.status === false) {
+              
               Swal.fire({
                 title: "Oops!",
                 text: "password not matching",
