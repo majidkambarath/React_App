@@ -41,6 +41,7 @@ function AdminLogin() {
                 withCredentials: true,
               }
               ).then((res)=>{
+                console.log(res.data);
                 if(res.data.created === true){
                   Swal.fire({
                             title: "Success!",

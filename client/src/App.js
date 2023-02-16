@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile"
 import Admin from "./pages/Admin"
 import AdminHome from "./pages/AdminHome"
+import EditUser from "./pages/EditUser"
+import AddUser from "./pages/AdminAdd"
 // import "react-toastify/dist/ReactToastify.css"
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
       <Route exact path="/profile" element={<Profile/>} /> 
       <Route exact path="/admin" element={<Admin/>} /> 
       <Route exact path="/adminHome" element={<AdminHome/>} /> 
+      <Route exact path="/adminHome/edit/:id" element={<EditUser/>} /> 
+      <Route exact path="/addUser" element={<AddUser/>} /> 
     </Routes>
     </BrowserRouter>
   );

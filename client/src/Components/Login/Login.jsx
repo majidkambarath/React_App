@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {useCookies} from "react-cookie";
+// import {useCookies} from "react-cookie";
 import {useSelector,useDispatch} from "react-redux"
 import "./Login.css";
 import Swal from "sweetalert2";
@@ -13,26 +13,22 @@ function Login() {
   console.log(localStorageData);
 
   const dispatch = useDispatch();
-  // const Auth = useSelector((state)=>{
-  //   console.log(state);
-  //   return state.Auth
-    
-  // },)
+  
   const [errors, setErrors] = useState({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [cookies] = useCookies([]) 
+  // const [cookies] = useCookies([]) 
   const navigate = useNavigate();
-  useEffect(()=>{
-	const verifyUser = async ()=>{
-		if(!cookies.jwt){
-			navigate('/login')
-		}else{
-			navigate('/')
-		}
-	}
-	 verifyUser();
-  },[cookies,navigate])
+  // useEffect(()=>{
+	// const verifyUser = async ()=>{
+	// 	if(!cookies.jwt){
+	// 		navigate('/login')
+	// 	}else{
+	// 		navigate('/')
+	// 	}
+	// }
+	//  verifyUser();
+  // },[cookies,navigate])
   const validation = () => {
     if (email === "") {
       setErrors({ email: "Email required....!" });
